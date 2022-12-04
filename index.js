@@ -5,6 +5,7 @@ const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const logger = require(`./logger.js`);
 const PORT = process.env.PORT || 3001;
+const dest = process.env.PROD_MAINSERVER_URL;
 
 const app = express();
 const server = app.listen(PORT, () => serLogger.info(`Live chat server running on ${PORT}`));
@@ -34,6 +35,7 @@ io.on('connection', socket => {
 
         socket.on('close', msg => {
             socket.broadcast.emit('message', formatMessage(admin, `${msg.user} ${msg.text}`));
+            socket.emit('redirect', dest);
         });
     });
 });
