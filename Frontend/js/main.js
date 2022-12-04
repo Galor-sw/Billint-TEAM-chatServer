@@ -28,11 +28,14 @@ socket.on('message', message => {
 })
 
 // Leave chat button
-disconnect.addEventListener('click', () => {
+disconnect.addEventListener('click', (e) => {
+    e.preventDefault();
     socket.emit('close', {user: username, text: "has diconnected..."});
-    socket.emit('disconnect', {user: username, text: "has diconnected..."});
-    socket.disconnect();
 });
+
+socket.on('redirect', dest =>{
+    window.location.href = dest;
+})
 
 // Send button
 chatForm.addEventListener('submit', (e) => {
