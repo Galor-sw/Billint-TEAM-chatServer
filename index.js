@@ -1,14 +1,14 @@
 require("dotenv").config({path: 'config/.env'});
 const express = require('express');
 const path = require('path');
-const http = require('http');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const logger = require(`./logger.js`);
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-const server = http.createServer(app);
+const server = app.listen(PORT, () => serLogger.info(`Live chat server running on ${PORT}`));
+
 const io = socketio(server);
 const serLogger = logger.log;
 
@@ -39,4 +39,4 @@ io.on('connection', socket => {
 });
 
 
-server.listen(PORT, () => serLogger.info(`Live chat server running on ${PORT}`));
+
