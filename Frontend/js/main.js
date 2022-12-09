@@ -13,7 +13,7 @@ let {username} = Qs.parse(location.search, {
 });
 
 if (username == undefined) {
-    username = 'Support';
+    username = 'Support representative';
 }
 
 // Client joined the chat

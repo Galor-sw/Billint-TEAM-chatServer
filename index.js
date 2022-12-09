@@ -24,7 +24,7 @@ io.on('connection', socket => {
     socket.on("joinChat", ({username}) => {
 
         socket.emit('message', formatMessage(admin, `Hey ${username}, welcome to support chat`));
-        socket.broadcast.emit('massage', formatMessage(admin, `${username} joined chat`))
+        socket.broadcast.emit('message', formatMessage(admin, `${username} has joined chat...`));
 
         socket.on('typing', (data) => {
             socket.broadcast.emit('display', data)
